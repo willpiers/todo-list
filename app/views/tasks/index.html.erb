@@ -1,16 +1,13 @@
 <h1>To-do List</h1>
 
 
-<ul>
+<ul id="task-list">
   <% @tasks.each do |task| %>
-    <li id="task_<%= task.id %>">
-     <%= task.description %>
-     <%= link_to 'Edit', edit_task_path(task) %>
-     <%= link_to 'Destroy', task, method: :delete, remote: true %>
-    </li>
+    <%= render 'task_partial', task: task %>
   <% end %>
   </ul>
 
 <br />
-
-<%= link_to 'New Task', new_task_path %>
+<span id="form-spot">
+  <%= link_to 'New Task', new_task_path, remote: true, id: 'new-task-link' %>
+</span>
