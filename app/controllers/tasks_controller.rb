@@ -1,7 +1,14 @@
 class TasksController < ApplicationController
+  before_filter :check_signed_in_status
+
+  def check_signed_in_status
+    unless current_user
+      redirect_to login_url, notice: 'Please Sign in'
+    end
+  end
 
   def index
-    @tasks = Task.all
+    @tasks = current_user.tasks
     @task = Task.new
 
     respond_to do |format|

@@ -1,2 +1,2 @@
 $('#new-task-link').hide();
-$('#form-spot').html('<%= j render("form", task: Task.new) %>');
+$('#form-spot').html('<%= j render("form", task: Task.new, user: current_user) %>');

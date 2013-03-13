@@ -1,6 +1,12 @@
 Todo::Application.routes.draw do
 
-  root to: "tasks#index"
+  get "/login" => "sessions#new", as: 'login'
+
+  post "sessions/create", as: 'session'
+
+  get '/logout' => "sessions#destroy", as: 'logout'
+
+  root to: "sessions#new"
 
   resources :tasks
 

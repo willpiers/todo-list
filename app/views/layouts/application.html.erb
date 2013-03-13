@@ -10,6 +10,16 @@
 <body>
 
 	<div class="container">
+		<% flash.each do |msg, value| %>
+			<p class="<%= msg %>"><%= value %></p>
+		<% end %>
+		<% if current_user %>
+			<p style="text-align: right; font-size: .7em">
+				Singed in as<br>
+				<%= current_user.email %><br>
+				<%= link_to "Sign out", logout_url %>
+			</p>
+		<% end %>
 		<%= yield %>
 	</div>
 
