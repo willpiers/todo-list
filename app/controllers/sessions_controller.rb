@@ -15,6 +15,7 @@ class SessionsController < ApplicationController
   		user.email = params[:email]
   		user.password = params[:password]
   		user.save
+  		session[:user_id] = user.id
   		redirect_to tasks_url, notice: "Signed Up!"
   	end
   end

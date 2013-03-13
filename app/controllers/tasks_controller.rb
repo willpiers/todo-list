@@ -2,7 +2,7 @@ class TasksController < ApplicationController
   before_filter :check_signed_in_status
 
   def check_signed_in_status
-    unless current_user
+    unless session[:user_id]
       redirect_to login_url, notice: 'Please Sign in'
     end
   end
