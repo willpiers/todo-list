@@ -1,6 +1,5 @@
 <li id="task-<%= task.id %>">
-	-
 	<%= task.description %>
-	<%= link_to image_tag('edit-icon.png', size: '20x20'), edit_task_path(task) %>
 	<%= link_to image_tag('check.png', size: '20x20'), task, method: :delete, remote: true %>
+	<%= link_to image_tag('edit-icon.png', size: '20x20'), edit_task_path(task), remote: true %>
 </li>

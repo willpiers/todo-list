@@ -2,6 +2,7 @@ class TasksController < ApplicationController
 
   def index
     @tasks = Task.all
+    @task = Task.new
 
     respond_to do |format|
       format.html
@@ -13,14 +14,17 @@ class TasksController < ApplicationController
     @task = Task.new
 
     respond_to do |format|
-      format.html
-      format.json { render json: @task }
       format.js { render 'new', layout: false }
+      format.html { redirect_to root_url, alert: 'This Page does not exist' }
     end
   end
 
   def edit
     @task = Task.find(params[:id])
+
+    respond_to do |format|
+      format.js { render 'edit', layout: false }
+    end
   end
 
   def create
@@ -45,6 +49,7 @@ class TasksController < ApplicationController
       if @task.update_attributes(params[:task])
         format.html { redirect_to @task, notice: 'Task was successfully updated.' }
         format.json { head :no_content }
+        format.js { render 'update', layout: false }
       else
         format.html { render action: "edit" }
         format.json { render json: @task.errors, status: :unprocessable_entity }
