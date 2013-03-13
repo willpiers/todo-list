@@ -11,8 +11,14 @@
 
 	<div class="container">
 		<% flash.each do |msg, value| %>
-			<p class="<%= msg %>"><%= value %></p>
+			<p class="<%= msg %> flash"><%= value %><span id='close-flash' style="float: right; border: 1px solid #444; border-radius: 30px; padding: 0px 3px; color: #444;">X</span></p>
 		<% end %>
+		<script>
+			$('#close-flash').on('click', function() {
+				$('.flash').hide();
+			});
+			$(".flash").delay(7000).fadeOut();
+		</script>
 		<% if current_user %>
 			<p style="text-align: right; font-size: .7em">
 				Singed in as<br>
