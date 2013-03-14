@@ -1,1 +1,2 @@
 $('#task-<%= @task.id %>').html('<%= j render("form", task: @task, user: current_user) %>');
+$('#task-<%= @task.id %> #description-field').trigger('focus');
