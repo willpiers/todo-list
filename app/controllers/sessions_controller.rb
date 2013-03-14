@@ -7,17 +7,14 @@ class SessionsController < ApplicationController
 
   def create
   	if user = User.find_by_email(params[:email])
-  		if user.password == params[:password]
+  		if user.authenticate params[:password]
 	  		session[:user_id] = user.id
 	  		redirect_to tasks_url, notice: "Welcome back!"
   		else
   			redirect_to login_url, alert: 'Incorrect Credentials'
   		end
   	else
-  		user = User.new
-  		user.email = params[:email]
-  		user.password = params[:password]
-  		user.save
+  		user = User.create email: params[:email], password: params[:password]
   		session[:user_id] = user.id
   		redirect_to tasks_url, notice: "Signed Up!"
   	end
